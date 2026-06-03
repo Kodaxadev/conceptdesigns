@@ -144,10 +144,20 @@ p {
 
 .detail-hero {
   display: grid;
-  grid-template-columns: minmax(0, 0.68fr) minmax(360px, 1fr);
+  grid-template-columns: minmax(340px, 0.82fr) minmax(460px, 1.1fr);
   align-items: center;
-  gap: 32px;
+  gap: 28px;
   margin-bottom: 32px;
+}
+
+.detail-hero > div {
+  min-width: 0;
+}
+
+.detail-hero h1 {
+  max-width: 620px;
+  font-size: clamp(3rem, 5.4vw, 5.25rem);
+  line-height: 0.96;
 }
 
 .detail-hero img,
@@ -156,6 +166,11 @@ p {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #080c0f;
+}
+
+.detail-hero img {
+  aspect-ratio: 1.8;
+  object-fit: contain;
 }
 
 .tag-row {
@@ -221,6 +236,11 @@ p {
   .study-layout,
   .artifact-panel {
     grid-template-columns: 1fr;
+  }
+
+  .detail-hero h1 {
+    max-width: 100%;
+    font-size: clamp(2.35rem, 14vw, 4.4rem);
   }
 
   .concept-card a {
