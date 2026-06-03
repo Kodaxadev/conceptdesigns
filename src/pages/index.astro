@@ -1,0 +1,25 @@
+---
+import ConceptCard from '../components/ConceptCard.astro';
+import { concepts } from '../data/concepts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Kodaxa Concept Designs"
+  description="Experimental Kodaxa visual design concepts, Blender studies, and web interaction prototypes."
+>
+  <main class="site-shell">
+    <header class="masthead">
+      <p class="eyebrow">Kodaxa concept lab</p>
+      <h1>Experimental design systems before they reach production.</h1>
+      <p>
+        A separate space for Blender studies, interaction prototypes, and visual
+        directions that need room to prove themselves.
+      </p>
+    </header>
+
+    <section class="concept-grid" aria-label="Concepts">
+      {concepts.map((concept) => <ConceptCard concept={concept} />)}
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,59 @@
+---
+const rows = ['KODAXA ', 'SYSTEMS', 'PROOF  ', 'LEDGER '];
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ';
+const cells = rows.flatMap((row, rowIndex) =>
+  [...row].map((target, colIndex) => ({
+    id: `${rowIndex + 1}-${colIndex + 1}`,
+    target,
+    delay: rowIndex * 7 + colIndex * 2,
+  }))
+);
+---
+
+<section class="live-board-section" aria-labelledby="live-board-title">
+  <div class="section-heading">
+    <p class="eyebrow">Web prototype</p>
+    <h2 id="live-board-title">Alphabet-cycling split-flap board</h2>
+    <p>
+      A browser-native translation of the Blender timing study. Each module
+      advances through the alphabet, then locks on its assigned glyph.
+    </p>
+  </div>
+
+  <div
+    class="split-flap-board"
+    data-split-flap-board
+    data-alphabet={alphabet}
+    aria-label="Animated board resolving to Kodaxa systems proof ledger"
+  >
+    <div class="split-flap-board__status" aria-hidden="true"></div>
+    <div class="split-flap-board__grid">
+      {
+        cells.map((cell) => (
+          <div
+            class:list={['split-cell', cell.target === ' ' && 'split-cell--blank']}
+            data-target={cell.target}
+            data-delay={cell.delay}
+          >
+            <div class="split-cell__face split-cell__face--top"></div>
+            <div class="split-cell__face split-cell__face--bottom"></div>
+            <div class="split-cell__glyph" aria-hidden="true">
+              {cell.target === ' ' ? '' : cell.target}
+            </div>
+            <div class="split-cell__seam" aria-hidden="true"></div>
+          </div>
+        ))
+      }
+    </div>
+    <div class="split-flap-board__rail" aria-hidden="true"></div>
+  </div>
+
+  <div class="board-actions">
+    <button type="button" data-split-flap-replay>Replay board</button>
+    <span>KODAXA / SYSTEMS / PROOF / LEDGER</span>
+  </div>
+</section>
+
+<script>
+  import '../scripts/split-flap-board';
+</script>

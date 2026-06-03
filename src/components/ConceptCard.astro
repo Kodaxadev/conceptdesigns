@@ -1,0 +1,20 @@
+---
+import type { Concept } from '../data/concepts';
+
+type Props = {
+  concept: Concept;
+};
+
+const { concept } = Astro.props;
+---
+
+<article class="concept-card">
+  <a href={`/${concept.slug}/`} aria-label={`Open ${concept.title}`}>
+    <img src={concept.heroImage} alt={`${concept.title} Blender board render`} loading="eager" />
+    <div class="concept-card__body">
+      <p>{concept.status}</p>
+      <h2>{concept.title}</h2>
+      <span>{concept.summary}</span>
+    </div>
+  </a>
+</article>

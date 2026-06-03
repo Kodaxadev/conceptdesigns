@@ -1,0 +1,104 @@
+---
+import { concepts } from '../data/concepts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SplitFlapBoard from '../components/SplitFlapBoard.astro';
+import '../styles/split-flap.css';
+
+const concept = concepts.find((item) => item.slug === 'split-flap');
+
+if (!concept) {
+  throw new Error('Split-flap concept metadata is missing.');
+}
+---
+
+<BaseLayout
+  title={`${concept.title} | Kodaxa Concept Designs`}
+  description={concept.summary}
+>
+  <main class="site-shell concept-detail">
+    <a class="back-link" href="/">Concepts</a>
+
+    <header class="detail-hero">
+      <div>
+        <p class="eyebrow">{concept.status}</p>
+        <h1>{concept.title}</h1>
+        <p>{concept.intent}</p>
+        <div class="tag-row">
+          {concept.tags.map((tag) => <span>{tag}</span>)}
+        </div>
+      </div>
+      <img src={concept.heroImage} alt={`${concept.title} full board render`} />
+    </header>
+
+    <SplitFlapBoard />
+
+    <section class="study-layout" aria-label="Design study notes">
+      <div>
+        <h2>Direction</h2>
+        <p>
+          The board should feel physical, credible, and operational: graphite
+          chassis, split seams, restrained cyan accents, and a mechanical cadence
+          that supports evidence and system language.
+        </p>
+      </div>
+      <div>
+        <h2>Translation Target</h2>
+        <p>
+          Blender defines the material and motion reference. The portfolio-ready
+          version should be web-native so it can stay responsive, accessible, and
+          performance-aware.
+        </p>
+      </div>
+    </section>
+
+    <section aria-label="Blender animation proof frames">
+      <div class="section-heading">
+        <p class="eyebrow">Blender reference</p>
+        <h2>Animation proof frames</h2>
+        <p>
+          The web animation above is based on this Blender pass: early alphabet
+          cycling, mid-transition, and the locked final board state.
+        </p>
+      </div>
+      <div class="proof-frame-grid">
+        <figure>
+          <img
+            src="/assets/concepts/split-flap/frame-024.png"
+            alt="Early Blender animation frame with alphabet cycling in progress"
+            loading="lazy"
+          />
+          <figcaption>Frame 024 / early cycle</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/assets/concepts/split-flap/frame-056.png"
+            alt="Mid Blender animation frame with several split-flap letters changing"
+            loading="lazy"
+          />
+          <figcaption>Frame 056 / transition</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/assets/concepts/split-flap/frame-104.png"
+            alt="Final Blender frame showing Kodaxa Systems Proof Ledger"
+            loading="lazy"
+          />
+          <figcaption>Frame 104 / locked state</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="artifact-panel" aria-label="Blender artifact reference">
+      <img src={concept.detailImage} alt={`${concept.title} tile module detail render`} />
+      <div>
+        <p class="eyebrow">Artifact</p>
+        <h2>Tile module GLB</h2>
+        <p>
+          Small exported reference module for inspecting bevels, hinge language,
+          and material direction.
+        </p>
+        <a href={concept.artifactHref}>Open GLB artifact</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
