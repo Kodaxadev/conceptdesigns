@@ -26,7 +26,11 @@ const cells = rows.flatMap((row, rowIndex) =>
     data-alphabet={alphabet}
     aria-label="Animated board resolving to Kodaxa systems proof ledger"
   >
-    <div class="split-flap-board__status" aria-hidden="true"></div>
+    <div class="split-flap-board__header" aria-hidden="true">
+      <span class="status-lamp status-lamp--amber"></span>
+      <span class="status-lamp status-lamp--cyan"></span>
+      <span class="engraved-label">KODAXA MECH-EVIDENCE ARRAY</span>
+    </div>
     <div class="split-flap-board__grid">
       {
         cells.map((cell) => (
@@ -41,11 +45,16 @@ const cells = rows.flatMap((row, rowIndex) =>
               {cell.target === ' ' ? '' : cell.target}
             </div>
             <div class="split-cell__seam" aria-hidden="true"></div>
+            <span class="split-cell__screw split-cell__screw--top" aria-hidden="true"></span>
+            <span class="split-cell__screw split-cell__screw--bottom" aria-hidden="true"></span>
           </div>
         ))
       }
     </div>
-    <div class="split-flap-board__rail" aria-hidden="true"></div>
+    <div class="split-flap-board__footer" aria-hidden="true">
+      <span></span>
+      <span></span>
+    </div>
   </div>
 
   <div class="board-actions">

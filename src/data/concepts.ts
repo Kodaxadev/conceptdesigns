@@ -21,9 +21,9 @@ export const concepts: Concept[] = [
       'A graphite split-flap board direction for the Kodaxa portfolio hero system.',
     intent:
       'Use Blender to define the physical language, then translate the best parts into a performant web-native interaction.',
-    heroImage: '/assets/concepts/split-flap/frame-104.png',
-    detailImage: '/assets/concepts/split-flap/tile-detail-v3.png',
-    artifactHref: '/assets/concepts/split-flap/tile-v4.glb',
+    heroImage: '/assets/concepts/split-flap/frame-real-104.png',
+    detailImage: '/assets/concepts/split-flap/frame-real-104.png',
+    artifactHref: '/assets/concepts/split-flap/splitflap-realism-board.glb',
     tags: ['split-flap', 'portfolio hero', 'Blender', 'web animation'],
   },
 ];
