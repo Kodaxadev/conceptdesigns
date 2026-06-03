@@ -6,6 +6,8 @@ const cells = rows.flatMap((row, rowIndex) =>
     id: `${rowIndex + 1}-${colIndex + 1}`,
     target,
     delay: rowIndex * 7 + colIndex * 2,
+    tone: (rowIndex * 3 + colIndex * 2) % 7,
+    wear: (rowIndex + colIndex * 3) % 5,
   }))
 );
 ---
@@ -38,6 +40,8 @@ const cells = rows.flatMap((row, rowIndex) =>
             class:list={['split-cell', cell.target === ' ' && 'split-cell--blank']}
             data-target={cell.target}
             data-delay={cell.delay}
+            data-tone={cell.tone}
+            data-wear={cell.wear}
           >
             <div class="split-cell__face split-cell__face--top"></div>
             <div class="split-cell__face split-cell__face--bottom"></div>

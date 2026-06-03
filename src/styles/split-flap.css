@@ -14,8 +14,9 @@
   border-radius: 4px;
   padding: clamp(16px, 2.4vw, 28px);
   background:
-    radial-gradient(circle at 22% 0%, rgba(255, 255, 255, 0.08), transparent 28%),
-    linear-gradient(180deg, #252b2c 0%, #0a0d0e 13%, #040606 100%);
+    radial-gradient(circle at 17% 4%, rgba(230, 166, 92, 0.12), transparent 23%),
+    radial-gradient(circle at 85% 22%, rgba(118, 204, 216, 0.08), transparent 30%),
+    linear-gradient(180deg, #2b2520 0%, #0c0d0c 15%, #040505 100%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.07),
     inset 0 -24px 34px rgba(0, 0, 0, 0.58),
@@ -72,7 +73,10 @@
 }
 
 .status-lamp--amber {
-  background: #d39b60;
+  background: #e0a66a;
+  box-shadow:
+    inset 0 1px 2px rgba(255, 245, 219, 0.52),
+    0 0 13px rgba(224, 166, 106, 0.24);
 }
 
 .status-lamp--cyan {
@@ -99,6 +103,7 @@
   border-radius: 3px;
   background: #030505;
   box-shadow:
+    inset 12px 0 28px rgba(114, 70, 39, 0.06),
     inset 0 18px 18px rgba(255, 255, 255, 0.025),
     inset 0 -18px 28px rgba(0, 0, 0, 0.74);
   perspective: 1000px;
@@ -122,7 +127,21 @@
   inset: 5px;
   border-radius: 2px;
   background: #030404;
-  box-shadow: inset 0 12px 18px rgba(0, 0, 0, 0.72);
+  box-shadow:
+    inset 0 12px 18px rgba(0, 0, 0, 0.72),
+    inset 8px 0 12px rgba(111, 78, 48, 0.035);
+  content: '';
+}
+
+.split-cell::after {
+  position: absolute;
+  left: 16px;
+  right: 24px;
+  bottom: 16px;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(118, 82, 51, 0.2);
+  opacity: calc(0.22 + (var(--wear, 0) * 0.08));
   content: '';
 }
 
@@ -133,8 +152,8 @@
   height: calc(50% - 3px);
   border: 1px solid rgba(0, 0, 0, 0.54);
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 22%, rgba(0, 0, 0, 0.1) 82%),
-    linear-gradient(180deg, #5d6663, #3f4846);
+    linear-gradient(90deg, rgba(255, 245, 218, 0.08), transparent 22%, rgba(0, 0, 0, 0.12) 82%),
+    linear-gradient(180deg, var(--flap-top, #665f50), var(--flap-bottom, #41483e));
   backface-visibility: hidden;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.18),
@@ -176,14 +195,15 @@
   inset: 0;
   display: grid;
   place-items: center;
-  color: rgba(232, 233, 221, 0.84);
+  color: rgba(238, 225, 190, 0.86);
   font-family: Arial, Helvetica, sans-serif;
   font-size: clamp(1.18rem, 4vw, 3.4rem);
   font-weight: 700;
   line-height: 1;
   text-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.12),
-    7px 9px 8px rgba(0, 0, 0, 0.38);
+    0 1px 0 rgba(255, 246, 221, 0.14),
+    7px 9px 8px rgba(0, 0, 0, 0.42);
+  opacity: var(--paint-opacity, 0.88);
   transform: translateZ(20px);
 }
 
@@ -214,8 +234,70 @@
     linear-gradient(180deg, #3d4846, #26302f);
 }
 
+.split-cell[data-tone='0'] {
+  --flap-top: #675d4d;
+  --flap-bottom: #44483d;
+  --paint-opacity: 0.9;
+}
+
+.split-cell[data-tone='1'] {
+  --flap-top: #5f665f;
+  --flap-bottom: #3a4644;
+  --paint-opacity: 0.82;
+}
+
+.split-cell[data-tone='2'] {
+  --flap-top: #6c614e;
+  --flap-bottom: #4b4438;
+  --paint-opacity: 0.86;
+}
+
+.split-cell[data-tone='3'] {
+  --flap-top: #59605a;
+  --flap-bottom: #363f3d;
+  --paint-opacity: 0.8;
+}
+
+.split-cell[data-tone='4'] {
+  --flap-top: #716957;
+  --flap-bottom: #4d4b40;
+  --paint-opacity: 0.87;
+}
+
+.split-cell[data-tone='5'] {
+  --flap-top: #5b615a;
+  --flap-bottom: #333d3b;
+  --paint-opacity: 0.83;
+}
+
+.split-cell[data-tone='6'] {
+  --flap-top: #655844;
+  --flap-bottom: #464034;
+  --paint-opacity: 0.89;
+}
+
+.split-cell[data-wear='0'] {
+  --wear: 0;
+}
+
+.split-cell[data-wear='1'] {
+  --wear: 1;
+}
+
+.split-cell[data-wear='2'] {
+  --wear: 2;
+}
+
+.split-cell[data-wear='3'] {
+  --wear: 3;
+}
+
+.split-cell[data-wear='4'] {
+  --wear: 4;
+}
+
 .split-cell.is-flipping .split-cell__face--top {
-  transform: rotateX(-51deg);
+  transform: rotateX(-54deg) translateY(-1px);
   filter: brightness(1.1);
 }
 
@@ -229,7 +311,11 @@
 }
 
 .split-cell.is-locked .split-cell__glyph {
-  color: rgba(235, 236, 226, 0.88);
+  color: rgba(239, 224, 188, 0.9);
+}
+
+.split-cell.is-settling {
+  animation: cabinet-settle 180ms ease-out;
 }
 
 .split-flap-board__footer {
@@ -264,6 +350,20 @@
   font-weight: 700;
   cursor: pointer;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+@keyframes cabinet-settle {
+  0% {
+    transform: translateY(-1px);
+  }
+
+  55% {
+    transform: translateY(1px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .board-actions button:hover {
